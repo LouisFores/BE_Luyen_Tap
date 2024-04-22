@@ -1,4 +1,4 @@
-CRUD PRODUCT API
+CRUD PRODUCT API - Use PostMan
 
 View      GET  http://localhost:8080/api/products
 View Page GET  http://localhost:8080/api/products/page (Tìm trang key = page, value = 1)
