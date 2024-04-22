@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List people</title>
+</head>
+<body>
+<h3>Peoples</h3>
+<p>
+    <a th:href="@{/peoples/create}">
+        Add new people
+    </a>
+</p>
+
+<p>
+<form th:action="@{/peoples/findByFullName}" method="GET" novalidate="novalidate">
+    <input type="text" th:name="name"/>
+    <input type="submit" value="Search"/>
+</form>
+</p>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id = "peoples">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>FullName</th>
+        <th>Age</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p,pStatus : ${peopleList}">
+        <td th:text="${pStatus.count}"></td>
+        <td th:text="${p.getFullName()}"></td>
+        <td th:text="${p.getAge()}"></td>
+        <td><a th:href="@{/peoples/update/{id}(id=${p.getIdPeople()})}">update</a></td>
+        <td><a th:href="@{/peoples/delete/{id}(id=${p.getIdPeople()})}" onclick="return confirmDelete()">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div id="page">
+    <a class="btn btn-primary" th:if="${peopleList.hasPrevious()}"
+       th:href="@{/peoples/view(page=${peopleList.number - 1})}">
+        <button class="btPage">Previous</button>
+    </a>
+    <span th:text="${peopleList.number + 1}"></span> | <span th:text="${peopleList.totalPages}"></span>
+    <a class="btn btn-primary" th:if="${peopleList.hasNext()}"
+       th:href="@{/peoples/view(page=${peopleList.number + 1})}">
+        <button class="btPage">Next</button>
+    </a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+<script>
+    function confirmDelete() {
+        let result = confirm("Bạn có chắc muốn xoá thông tin này?");
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+</html>
