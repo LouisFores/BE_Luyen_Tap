@@ -1,0 +1,15 @@
+CRUD DEPARTMENT API - Use PostMan
+
+View      GET  http://localhost:8080/api/departments
+View Page GET  http://localhost:8080/api/departments/page (Tìm trang key = page, value = 1)
+Create product   POST http://localhost:8080/api/departments
+          {
+              "nameDepartment": "Phong A"
+          }
+Update product   PUT http://localhost:8080/api/departments/2
+          {
+              "nameDepartment": "Phong B"
+          }
+Delete product   DELETE http://localhost:8080/api/departments/2
+Search name      GET    http://localhost:8080/api/departments/search-name?nameDepartment=C
+                        (Tìm theo giá trị key = nameDepartment, value = C)
