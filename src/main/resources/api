@@ -1,0 +1,19 @@
+CRUD PRODUCT API
+
+View      GET  http://localhost:8080/api/products
+View Page GET  http://localhost:8080/api/products/page (Tìm trang key = page, value = 1)
+Create product   POST http://localhost:8080/api/products
+          {
+              "nameProduct": "Iphone AAA",
+              "price": 12000,
+              "idPeople": 4
+          }
+Update product   PUT http://localhost:8080/api/products/2
+          {
+              "nameProduct": "Samsung Note JSF1",
+              "price": 22000,
+              "idPeople": 2
+          }
+Delete product   DELETE http://localhost:8080/api/products/1
+Price near       GET    http://localhost:8080/api/products/near-price/10000/15000
+Search name      GET    http://localhost:8080/api/products/search-name/I

@@ -13,7 +13,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProduct;
 
-    @NotEmpty
+    @NotEmpty(message = "Giá trị nhập sai.")
     @Size(min = 5, max = 30)
     private String nameProduct;
 
