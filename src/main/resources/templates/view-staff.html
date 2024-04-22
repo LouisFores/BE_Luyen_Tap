@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>List staff</title>
+</head>
+<body>
+<h3>Staffs</h3>
+<p>
+    <a th:href="@{/staffs/create}">
+        Add new staff
+    </a>
+</p>
+
+<p>
+<form th:action="@{/staffs/findByFullName}" method="GET" novalidate="novalidate">
+    <input type="text" th:name="name"/>
+    <input type="submit" value="Search"/>
+</form>
+</p>
+<div class="notify">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+</div>
+
+<table id = "staffs">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>FullName</th>
+        <th>Age</th>
+        <th>Department</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p,pStatus : ${staffPage}">
+        <td th:text="${pStatus.count}"></td>
+        <td th:text="${p.getFullName()}"></td>
+        <td th:text="${p.getAge()}"></td>
+        <td th:text="${p.department.getNameDepartment()}"></td>
+        <td><a th:href="@{/staffs/update/{id}(id=${p.getIdStaff()})}">update</a></td>
+        <td><a th:href="@{/staffs/delete/{id}(id=${p.getIdStaff()})}" onclick="return confirmDelete()">delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div id="page">
+    <a class="btn btn-primary" th:if="${staffPage.hasPrevious()}"
+       th:href="@{/staffs/view(page=${staffPage.number - 1})}">
+        <button class="btPage">Previous</button>
+    </a>
+    <span th:text="${staffPage.number + 1}"></span> | <span th:text="${staffPage.totalPages}"></span>
+    <a class="btn btn-primary" th:if="${staffPage.hasNext()}"
+       th:href="@{/staffs/view(page=${staffPage.number + 1})}">
+        <button class="btPage">Next</button>
+    </a>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+<script>
+    function confirmDelete() {
+        let result = confirm("Bạn có chắc muốn xoá thông tin này?");
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+</html>
