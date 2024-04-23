@@ -13,3 +13,28 @@ Update product   PUT http://localhost:8080/api/departments/2
 Delete product   DELETE http://localhost:8080/api/departments/2
 Search name      GET    http://localhost:8080/api/departments/search-name?nameDepartment=C
                         (Tìm theo giá trị key = nameDepartment, value = C)
+
+CRUD Employee API - Use PostMan
+
+View      GET  http://localhost:8080/api/employees
+Create product   POST http://localhost:8080/api/employees
+           {
+              "idEmployee": "CG125",
+              "name": "Pham Van A",
+              "age": 20,
+              "salary": 50000.0,
+              "idDepartment": 6
+           }
+Update product   PUT http://localhost:8080/api/employees/update?idEmployee=CG125
+          {
+             "name": "Le Pham Minh Hieu A",
+             "age": 20,
+             "salary": 50000.0,
+             "idDepartment": 6
+          }
+Delete product   DELETE http://localhost:8080/api/employees/delete?idEmployee=CG125
+                        (Tìm theo giá trị key = idEmployee, value = CG125)
+
+
+
+
