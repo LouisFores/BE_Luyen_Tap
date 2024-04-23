@@ -6,6 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 public interface IDepartmentRepository extends CrudRepository<Department, Long> {
-    Page<Department> findAll(Pageable pageable);
     Iterable<Department> findAllByNameDepartmentContaining(String name);
+
 }

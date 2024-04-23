@@ -7,51 +7,60 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "staff")
-public class Staff {
+@Table(name = "employee")
+public class Employee {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idStaff;
+    @NotEmpty(message = "Dữ liệu không để trống")
+
+    private String idEmployee;
 
     @NotEmpty(message = "Dữ liệu không để trống")
     @Size(min = 5, max = 30)
-    private String fullName;
+    private String name;
 
     @Min(20)
     private int age;
 
     @NotEmpty(message = "Dữ liệu không để trống")
-    @Min(2000)
     private double salary;
 
     @ManyToOne
     @JoinColumn(name = "idDepartment")
     private Department department;
 
-    public Staff() {}
+    public Employee() {}
 
-    public Staff(@NotEmpty @Size(min = 5, max = 30) String fullName,
+    public Employee(@NotEmpty @Size(min = 5, max = 30) String name,
                  @Min(20) int age,
                  @NotEmpty(message = "Dữ liệu không để trống") @Min(2000) double salary) {
-        this.fullName = fullName;
+        this.name = name;
         this.age = age;
         this.salary = salary;
     }
 
-    public Long getIdStaff() {
-        return idStaff;
+    public Employee(String idEmployee, String name, int age, double salary, Department department) {
+        this.idEmployee = idEmployee;
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+        this.department = department;
     }
 
-    public void setIdStaff(Long idStaff) {
-        this.idStaff = idStaff;
+    public String getIdEmployee() {
+        return idEmployee;
     }
 
-    public String getFullName() {
-        return fullName;
+    public void setIdEmployee(String idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getAge() {

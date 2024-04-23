@@ -11,13 +11,17 @@
     </a>
 </p>
 <div id="form">
-    <form th:action="@{/staffs/save}" th:object="${staff}"
+    <form th:action="@{/employees/save}" th:object="${employee}"
           method="POST" novalidate="novalidate">
-        <input type="hidden" th:field="*{idStaff}"/>
         <div>
-            <label for="fullName">FullName</label>
-            <input type="text" id="fullName" th:field="*{fullName}" required/>
-            <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></p>
+            <label for="employeeCode">EmployeeCode</label>
+            <input type="text" id="employeeCode" th:field="*{idEmployee}" required/>
+            <p th:if="${#fields.hasErrors('idEmployee')}" th:errors="*{idEmployee}"></p>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}" required/>
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
         </div>
         <div>
             <label for="age">Age</label>
@@ -25,7 +29,12 @@
             <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" ></p>
         </div>
         <div>
-            <label for="department">Age</label>
+            <label for="salary">Salary</label>
+            <input type="number" id="salary" th:field="*{salary}" required min="500000"/>
+            <p th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></p>
+        </div>
+        <div>
+            <label for="department">Department</label>
             <select id="department" th:field="*{department}">
                 <option th:each="d : ${departments}" th:value="${d.getIdDepartment()}" th:text="${d.getNameDepartment()}"></option>
             </select>

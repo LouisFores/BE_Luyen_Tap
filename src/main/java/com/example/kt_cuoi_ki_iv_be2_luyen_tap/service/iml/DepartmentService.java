@@ -18,22 +18,14 @@ public class DepartmentService implements IDepartmentService {
         return iDepartmentRepository.findAll();
     }
 
-    @Override
-    public Page<Department> findAll(Pageable pageable) {
-        return iDepartmentRepository.findAll(pageable);
-    }
-
-    @Override
     public Optional<Department> findById(Long id) {
         return iDepartmentRepository.findById(id);
     }
-
     @Override
     public Department save(Department department) {
         return iDepartmentRepository.save(department);
     }
 
-    @Override
     public void remove(Long id) {
         iDepartmentRepository.deleteById(id);
     }

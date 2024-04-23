@@ -3,9 +3,6 @@ package com.example.kt_cuoi_ki_iv_be2_luyen_tap.controller;
 import com.example.kt_cuoi_ki_iv_be2_luyen_tap.model.Department;
 import com.example.kt_cuoi_ki_iv_be2_luyen_tap.service.iml.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -31,28 +28,18 @@ public class DepartmentController {
         return new ResponseEntity<>(departments, HttpStatus.OK);
     }
 
-    @GetMapping("/page")
-    public ResponseEntity<Page<Department>> getAllStudents(@PageableDefault(5) Pageable pageable) {
-        Page<Department> departments =  departmentService.findAll(pageable);
-        if (departments.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(departments,HttpStatus.OK);
-    }
-
-
     @PostMapping
     public ResponseEntity<String> saveDepartment(@Valid @RequestBody Department department, BindingResult bindingResult) {
-       if (bindingResult.hasFieldErrors()) {
-           List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
-           StringBuilder builder = new StringBuilder();
-           for (FieldError error : fieldErrorList) {
-               builder.append(error.getDefaultMessage()).append("\n");
-           }
-           return new ResponseEntity<>(builder.toString(), HttpStatus.CREATED);
-       }
-       departmentService.save(department);
-       return new ResponseEntity<>("Create success", HttpStatus.CREATED);
+        if (bindingResult.hasFieldErrors()) {
+            List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
+            StringBuilder builder = new StringBuilder();
+            for (FieldError error : fieldErrorList) {
+                builder.append(error.getDefaultMessage()).append("\n");
+            }
+            return new ResponseEntity<>(builder.toString(), HttpStatus.CREATED);
+        }
+        departmentService.save(department);
+        return new ResponseEntity<>("Create success", HttpStatus.CREATED);
     }
 
     @PutMapping("/{idDepartment}")

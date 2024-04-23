@@ -7,8 +7,5 @@ import java.util.Optional;
 
 public interface IGeneratorService<E> {
     Iterable<E> findAll();
-    Page<E> findAll(Pageable pageable);
-    Optional<E> findById(Long id);
     E save(E e);
-    void remove(Long id);
 }
